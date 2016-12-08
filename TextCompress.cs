@@ -30,9 +30,13 @@ namespace Posh2Exe
                 var compressedData = new byte[memoryStream.Length];
                 memoryStream.Read(compressedData, 0, compressedData.Length);
                 var gZipBuffer = new byte[compressedData.Length + 4];
+                // First 4 bytes are the size of the buffer
                 Buffer.BlockCopy(compressedData, 0, gZipBuffer, 4, compressedData.Length);
+                // Now copy the rest of the buffer
                 Buffer.BlockCopy(BitConverter.GetBytes(buffer.Length), 0, gZipBuffer, 0, 4);
+                // Get a tmp file path
                 tmpFilePath = Path.GetTempFileName();
+                // Open a StreamWriter to write everything into that file
                 using (StreamWriter sw = new StreamWriter(tmpFilePath))
                     sw.WriteLine(Convert.ToBase64String(gZipBuffer));
             }
@@ -76,10 +80,14 @@ namespace Posh2Exe
         public static string DecompressFile(string CompressPath)
         {
             string tmpPath = String.Empty;
+            // Open the compressed file
             using (StreamReader sr = new StreamReader(CompressPath))
             {
+                // read the file content into a buffer
                 byte[] gZipBuffer = Convert.FromBase64String(sr.ReadToEnd());
+                // the first 4 bytes are the buffer size
                 int dataLength = BitConverter.ToInt32(gZipBuffer, 0);
+                // the the rest into a buffer
                 using (var memoryStream = new MemoryStream())
                 {
                     memoryStream.Write(gZipBuffer, 4, gZipBuffer.Length - 4);
@@ -89,6 +97,7 @@ namespace Posh2Exe
                     {
                         gZipStream.Read(buffer, 0, buffer.Length);
                     }
+                    // write the buffer into a file
                     tmpPath = Path.GetTempFileName();
                     using (StreamWriter sw = new StreamWriter(tmpPath))
                     {

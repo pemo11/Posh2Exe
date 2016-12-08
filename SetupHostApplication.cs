@@ -15,6 +15,25 @@ namespace Posh2Exe
 {
     public class SetupHostApplication
     {
+        private static string GetQuote()
+        {
+            List<string> quotes = new List<string>();
+            Assembly ass = Assembly.GetExecutingAssembly();
+            using (StreamReader sr = new StreamReader(ass.GetManifestResourceStream("Posh2Exe.Quotes.txt")))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string line = sr.ReadLine();
+                    if (!string.IsNullOrEmpty(line))
+                    {
+                        quotes.Add(line);
+                    }
+                }
+            }
+            int z = new Random().Next(0, quotes.Count);
+            return quotes[z];
+        }
+
         static void Main(string[] args)
         {
             TimeSpan duration;
@@ -22,6 +41,15 @@ namespace Posh2Exe
             Console.ForegroundColor = ConsoleColor.Green;
             string ps1Path = args[0];
             string exeName = args[1];
+
+            Console.WriteLine(new String('*', 80));
+            Console.WriteLine("Welcome to Posh2Exe");
+            Console.WriteLine("I hope the tool serves you well");
+            Console.WriteLine();
+            Console.WriteLine("The quote of the day:");
+            Console.WriteLine(GetQuote());
+            Console.WriteLine();
+            Console.WriteLine(new String('*', 80));
             exeName += Path.GetExtension(exeName) != ".exe" ? ".exe" : "";
             // Wurde nur eine Datei angegeben?
             if (Path.GetPathRoot(ps1Path) == "")

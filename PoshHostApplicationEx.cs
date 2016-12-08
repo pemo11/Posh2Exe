@@ -1,12 +1,11 @@
 // File: PoshHostApplication.cs
 
 using System;
-using System.Collections.ObjectModel;
-using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using System.Collections.ObjectModel;
 
 namespace Posh2Exe
 {
@@ -35,7 +34,7 @@ namespace Posh2Exe
             // Zur Kontrolle alle Ressourcenamen ausgeben
             foreach (string resName in currentAss.GetManifestResourceNames())
             {
-                Console.WriteLine("*** " + resName);
+                // Console.WriteLine("*** " + resName);
             }
 
             // Creating a new PowerShell Host for "executing" the script
@@ -49,28 +48,42 @@ namespace Posh2Exe
                 {
                     powershell.Runspace = runSpace;
                     Assembly curAssembly = Assembly.GetExecutingAssembly();
-                    // using (StreamReader sr = new StreamReader(curAssembly.GetManifestResourceStream("DBAbfrage.ps1")))
+                    // using (StreamReader sr = new StreamReader(curAssembly.GetManifestResourceStream("DBAbfrage1.ps1")))
                     // {
                     // string ps1Script = sr.ReadToEnd();
-                    // TODO: Ressource dekomprimieren über System.IO.Compression
-                    string ps1Script = TextCompress.DecompressStream(curAssembly.GetManifestResourceStream("DBAbfrage.ps1"));
-                    Console.WriteLine(ps1Script);
+                    string ps1Script = TextCompress.DecompressStream(curAssembly.GetManifestResourceStream("DBAbfrage1.ps1"));
+                    // Console.WriteLine(ps1Script);
                     powershell.AddScript(ps1Script);
-                    string pattern = @"(\w+):(\w+)";
+                    string pattern = @"(\w+):(.+)";
                     for (int i = 0; i < args.Length; i++)
                     {
                         // Console.WriteLine("*** Arg Nr. {0}: {1}", i, args[i]);
                         if (Regex.IsMatch(args[i], pattern))
                         {
                             Match m = Regex.Match(args[i], pattern);
+                            // Console.WriteLine("Arg-Name: {0}, Arg-Value: {1}", m.Groups[1].Value, m.Groups[2].Value);
                             powershell.AddParameter(m.Groups[1].Value, m.Groups[2].Value);
                         }
+                        else
+                        {
+                            powershell.AddParameter(null, args[i]);
+                        }
                     }
-                    powershell.AddCommand("Out-Default");
+                    // Pipeline must be written directly to the host window
+                    powershell.AddCommand("Out-Host");
                 //}
                     // Collect errors
                     powershell.Commands.Commands[0].MergeMyResults(PipelineResultTypes.Error, PipelineResultTypes.Output);
-                    powershell.Invoke();
+                    Collection<PSObject> results =  powershell.Invoke();
+                    if (results.Count > 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        foreach(PSObject result in results)
+                        {
+                            Console.WriteLine("*** {0}", result.ToString());
+                        }
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
                 }
             }
         }
