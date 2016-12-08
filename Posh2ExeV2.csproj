@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Posh2Exe.SetupHostApplication</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,14 +51,12 @@
   <ItemGroup>
     <Compile Include="Posh2ExeException.cs" />
     <Compile Include="PoshHost.cs" />
+    <Compile Include="PoshHostApplication.cs" />
     <Compile Include="PoshHostRawUserInterface.cs" />
     <Compile Include="PoshHostUserInterface.cs" />
-    <Compile Include="HostApplication.cs" />
-    <Content Include="Posh\Posh2ExeException.cs" />
-    <Content Include="Posh\PoshHost.cs" />
-    <Content Include="Posh\PoshHostRawUserInterface.cs" />
-    <Content Include="Posh\PoshHostUserInterface.cs" />
+    <Compile Include="SetupHostApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextCompress.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

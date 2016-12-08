@@ -12,7 +12,7 @@ namespace Posh2Exe
         /// <summary>
         /// Reference to the Host Application
         /// </summary>
-        private HostApplication hostApp;
+        private PoshHostApplication hostApp;
 
         private CultureInfo originalCultureInfo = Thread.CurrentThread.CurrentCulture;
 
@@ -20,7 +20,7 @@ namespace Posh2Exe
 
         private Guid hostId = Guid.NewGuid();
 
-        public PoshHost(HostApplication HostApp)
+        public PoshHost(PoshHostApplication HostApp)
         {
             this.hostApp = HostApp;
         }

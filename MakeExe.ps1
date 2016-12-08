@@ -70,7 +70,7 @@ namespace PemoHost
             // Zur Kontrolle alle Ressourcenamen ausgeben
             foreach(string resName in currentAss.GetManifestResourceNames())
             {
-                Console.WriteLine("*** " + resName);
+                // Console.WriteLine("*** " + resName);
             }
 
 		    // Creating a new PowerShell Host for "executing" the script
@@ -93,14 +93,13 @@ namespace PemoHost
 						string pattern = @"(\w+):(\w+)";
 						for(int i = 0; i < args.Length; i++)
 						{
-							Console.WriteLine("*** Arg Nr. {0}: {1}", i, args[i]);
+							// Console.WriteLine("*** Arg Nr. {0}: {1}", i, args[i]);
 			                if (Regex.IsMatch(args[i], pattern))
 						    {
 								Match m = Regex.Match(args[i], pattern);
 								powershell.AddParameter(m.Groups[1].Value, m.Groups[2].Value);
 							}
 						}
-					    // powershell.AddParameter("LimitMB", 104857600);
                         powershell.AddCommand("Out-Default");
                     }
                     // Collect errors
