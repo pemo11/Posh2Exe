@@ -43,6 +43,7 @@ namespace Posh2Exe
 
             using (Runspace runSpace = RunspaceFactory.CreateRunspace(poshHost))
             {
+                runSpace.ApartmentState = System.Threading.ApartmentState.STA;
                 runSpace.Open();
                 using (PowerShell powershell = PowerShell.Create())
                 {

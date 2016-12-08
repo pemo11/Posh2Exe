@@ -43,15 +43,16 @@ namespace Posh2Exe
 
             using (Runspace runSpace = RunspaceFactory.CreateRunspace(poshHost))
             {
+                runSpace.ApartmentState = System.Threading.ApartmentState.STA;
                 runSpace.Open();
                 using (PowerShell powershell = PowerShell.Create())
                 {
                     powershell.Runspace = runSpace;
                     Assembly curAssembly = Assembly.GetExecutingAssembly();
-                    // using (StreamReader sr = new StreamReader(curAssembly.GetManifestResourceStream("DBAbfrage1.ps1")))
+                    // using (StreamReader sr = new StreamReader(curAssembly.GetManifestResourceStream("XMLDropV2.1.ps1")))
                     // {
                     // string ps1Script = sr.ReadToEnd();
-                    string ps1Script = TextCompress.DecompressStream(curAssembly.GetManifestResourceStream("DBAbfrage1.ps1"));
+                    string ps1Script = TextCompress.DecompressStream(curAssembly.GetManifestResourceStream("XMLDropV2.1.ps1"));
                     // Console.WriteLine(ps1Script);
                     powershell.AddScript(ps1Script);
                     string pattern = @"(\w+):(.+)";
