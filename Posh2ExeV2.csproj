@@ -49,14 +49,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Posh2ExeException.cs" />
-    <Compile Include="PoshHost.cs" />
-    <Compile Include="PoshHostApplication.cs" />
-    <Compile Include="PoshHostRawUserInterface.cs" />
-    <Compile Include="PoshHostUserInterface.cs" />
+    <Compile Include="HostSource\Posh2ExeException.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="HostSource\PoshHost.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="HostSource\PoshHostApplication.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="HostSource\PoshHostRawUserInterface.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="HostSource\PoshHostUserInterface.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="SetupHostApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextCompress.cs" />
+    <Compile Include="HostSource\TextCompress.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
