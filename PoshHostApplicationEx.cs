@@ -1,4 +1,8 @@
+// ====================================================================
 // File: PoshHostApplication.cs
+// the bare minimum implementation of a PowerShell Host that runs the
+// script that is embedded as a resource
+// ====================================================================
 
 using System;
 using System.Reflection;
@@ -31,7 +35,7 @@ namespace Posh2Exe
             // Ps1 file into the Assembly Resource
             Assembly currentAss = Assembly.GetExecutingAssembly();
 
-            // Zur Kontrolle alle Ressourcenamen ausgeben
+            // Only for testing purpose - display the name of all resources
             foreach (string resName in currentAss.GetManifestResourceNames())
             {
                 // Console.WriteLine("*** " + resName);
@@ -49,9 +53,7 @@ namespace Posh2Exe
                 {
                     powershell.Runspace = runSpace;
                     Assembly curAssembly = Assembly.GetExecutingAssembly();
-                    // using (StreamReader sr = new StreamReader(curAssembly.GetManifestResourceStream("XMLDropV2.1.ps1")))
-                    // {
-                    // string ps1Script = sr.ReadToEnd();
+                    // remember, the ps1 file is compressed so a litte decompression is necessary
                     string ps1Script = TextCompress.DecompressStream(curAssembly.GetManifestResourceStream("XMLDropV2.1.ps1"));
                     // Console.WriteLine(ps1Script);
                     powershell.AddScript(ps1Script);
@@ -71,8 +73,8 @@ namespace Posh2Exe
                         }
                     }
                     // Pipeline must be written directly to the host window
+                    // the output will be text not objects :(
                     powershell.AddCommand("Out-Host");
-                //}
                     // Collect errors
                     powershell.Commands.Commands[0].MergeMyResults(PipelineResultTypes.Error, PipelineResultTypes.Output);
                     Collection<PSObject> results =  powershell.Invoke();

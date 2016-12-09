@@ -1,4 +1,7 @@
-﻿// File: Posh2ExeException.cs
+﻿// ====================================================================
+// File: Posh2ExeException.cs
+// An exeception class fore catching more specific errors
+// ====================================================================
 
 namespace Posh2Exe
 {

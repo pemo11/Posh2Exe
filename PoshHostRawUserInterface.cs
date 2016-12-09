@@ -1,4 +1,7 @@
-﻿// File: PoshHostRawUserInterface.cs
+﻿// ====================================================================
+// File: PoshHostRawUserInterface.cs
+// This is a standard implementation of the PSHostRawUserInterface interface
+// ====================================================================
 
 namespace Posh2Exe
 {
@@ -37,7 +40,6 @@ namespace Posh2Exe
             set { Console.CursorSize = value; }
         }
 
-
         public override bool KeyAvailable
         {
             get { return Console.KeyAvailable; }
@@ -73,7 +75,7 @@ namespace Posh2Exe
 
         public override void FlushInputBuffer()
         {
-            // Hier passiert nichts
+            // nothing is happening here
         }
 
         public override BufferCell[,] GetBufferContents(Rectangle rectangle)

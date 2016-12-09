@@ -1,4 +1,8 @@
-﻿// File: PoshHost.cs
+﻿// ====================================================================
+// File: PoshHost.cs
+// A standard implementation of the PSHost class with the bare
+// minimum of the required functionality
+// ====================================================================
 
 namespace Posh2Exe
 {

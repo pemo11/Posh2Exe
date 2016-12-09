@@ -1,4 +1,7 @@
-﻿// File: PoshHostUserInterface.cs
+﻿// ====================================================================
+// File: PoshHostUserInterface.cs
+// This is a standard implementation of the PSHostUserInterface interface
+// ====================================================================
 
 namespace Posh2Exe
 {
