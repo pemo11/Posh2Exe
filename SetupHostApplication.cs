@@ -53,6 +53,8 @@ namespace Posh2Exe
         {
             TimeSpan duration;
             DateTime startTime;
+            // save current console color
+            ConsoleColor oldColor = Console.ForegroundColor;
             // Green looks more serious
             Console.ForegroundColor = ConsoleColor.Green;
             // check if the first arg is -?
@@ -107,7 +109,7 @@ namespace Posh2Exe
             CompilerParameters compParas = new CompilerParameters();
             compParas.GenerateExecutable = true;
             compParas.OutputAssembly = Path.Combine(Environment.CurrentDirectory, exeName);
-            compParas.IncludeDebugInformation = true;
+            compParas.IncludeDebugInformation = false;
 
             // create a temp directory
             string tmpDir = Path.Combine(Path.GetTempPath(), "Posh2Exe");
@@ -118,19 +120,22 @@ namespace Posh2Exe
             compParas.TempFiles = new TempFileCollection(tmpDir);
 
             // a little compression won't hurt
-            string tmpPath = TextCompress.CompressFile(ps1Path);
-            string tmpPs1Path = Path.Combine(tmpDir, ps1Name);
+            string compressedPath = TextCompress.CompressFile(ps1Path);
 
-            // move the ps1 file temporarily so that the compressed file can added as resource file
-            File.Copy(ps1Path, tmpPs1Path, true);
-            File.Copy(tmpPath, ps1Path, true);
+            // make a copy of the ps1 so that the compressed file can added as resource file
+            string ps1BackupPath = Path.ChangeExtension(ps1Path, "original.ps1");
+            File.Copy(ps1Path, ps1BackupPath, true);
+            // now overwrite the ps1 file with the compressed file
+            File.Copy(compressedPath, ps1Path, true);
 
             // add the compressed ps1 file as a resource
             compParas.EmbeddedResources.Add(ps1Path);
+
             // add reference to some assemblies
             // Ältere System.Management.automation.dll
             // string autoPath = Path.Combine(Environment.CurrentDirectory, "System.Management.Automation.dll");
             string autoPath = @"C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll";
+            
             // TODO: Nicht ganz optimal
             string corePath = @"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Core.dll";
             compParas.ReferencedAssemblies.Add(autoPath);
@@ -138,30 +143,31 @@ namespace Posh2Exe
             compParas.ReferencedAssemblies.Add("System.dll");
 
             CSharpCodeProvider codeProvider = new CSharpCodeProvider();
-            // exchange place holder for resourcename
+
+            // get source files from resources
+            Assembly curAss = Assembly.GetExecutingAssembly();
+            string[] fileList = new string[]
+            {
+                "Posh2ExeException.cs",
+                "PoshHost.cs",
+                "PoshHostApplication.cs",
+                "PoshHostRawUserInterface.cs",
+                "PoshHostUserInterface.cs",
+                "TextCompress.cs"
+            };
+            string[] sources = new string[fileList.Length];
+
             string sourceCode = "";
-            File.Copy(@"HostSource\PoshHostApplication.cs", @"HostSource\PoshHostApplicationEx.cs", true);
-
-            // read source file for exchanging the placeholder with the name of the ps1 file
-            using (StreamReader sr = new StreamReader(@"HostSource\PoshHostApplicationEx.cs"))
+            for (int i = 0; i <  fileList.Length; i++)
             {
-                sourceCode = sr.ReadToEnd();
-                sourceCode = sourceCode.Replace("<<resourcename>>", ps1Name);
+                using (StreamReader sr = new StreamReader(curAss.GetManifestResourceStream("Posh2Exe.HostSource." + fileList[i])))
+                {
+                    // exchange place holder for resourcename
+                    sourceCode = sr.ReadToEnd().Replace("<<resourcename>>", ps1Name);
+                    sources[i] = sourceCode;
+                }
             }
-            // save the source file with the ps1 file name
-            using (StreamWriter sw = new StreamWriter(@"HostSource\PoshHostApplicationEx.cs"))
-            {
-                sw.WriteLine(sourceCode);
-            }
-
-            // compile all source files into a exe
-            CompilerResults results = codeProvider.CompileAssemblyFromFile(compParas,
-                    @"HostSource\PoshHostApplicationEx.cs",
-                    @"HostSource\PoshHost.cs",
-                    @"HostSource\PoshHostRawUserInterface.cs",
-                    @"HostSource\PoshHostUserInterface.cs",
-                    @"HostSource\Posh2ExeException.cs",
-                    @"HostSource\TextCompress.cs");
+            CompilerResults results = codeProvider.CompileAssemblyFromSource(compParas, sources);
 
             // show results
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -179,14 +185,15 @@ namespace Posh2Exe
             }
 
             // get the uncompressed ps1 file back
-            File.Copy(tmpPs1Path, ps1Path, true);
+            File.Copy(ps1BackupPath, ps1Path, true);
 
             // measurement stops
             duration = DateTime.Now - startTime;
             // display a summary
             Console.WriteLine("*** {0} with embedded {1} created in {2:n2}s", exeName, ps1Path, duration.TotalSeconds);
             Console.WriteLine(new String('*', 80));
-            Console.ForegroundColor = ConsoleColor.Green;
+
+            Console.ForegroundColor = oldColor;
             Console.WriteLine("\nJust press one key of your choice on the keyboard");
             Console.ReadLine();
         }

@@ -49,26 +49,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HostSource\Posh2ExeException.cs">
+    <Compile Include="TextCompress.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="HostSource\PoshHost.cs">
+    <EmbeddedResource Include="HostSource\Posh2ExeException.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="HostSource\PoshHostApplication.cs">
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostSource\PoshHost.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="HostSource\PoshHostRawUserInterface.cs">
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostSource\PoshHostApplication.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="HostSource\PoshHostUserInterface.cs">
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostSource\PoshHostRawUserInterface.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostSource\PoshHostUserInterface.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Compile Include="Posh2ExeException.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="SetupHostApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="HostSource\TextCompress.cs">
+    <EmbeddedResource Include="HostSource\TextCompress.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
