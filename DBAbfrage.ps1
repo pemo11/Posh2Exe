@@ -1,6 +1,6 @@
 ﻿<#
  .Synopsis
- Daten abrufen per DataTable
+ Getting database table with a DataTable
  #>
 param([String]$SqlCommand = "Select * From Employees")
 
@@ -15,5 +15,5 @@ try
 }
 catch
 {
-    Write-Warning "SQL-Fehler ($_)"
+    Write-Warning "SQL Server error ($_)"
 }
