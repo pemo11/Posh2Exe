@@ -11,6 +11,9 @@ namespace Posh2Exe
     using System.Management.Automation.Host;
     using System.Threading;
 
+    /// <summary>
+    /// A very simple PSHost implementation
+    /// </summary>
     public class PoshHost : PSHost
     {
         /// <summary>

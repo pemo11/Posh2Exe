@@ -1,4 +1,6 @@
-﻿// File: StringCompress.cs
+﻿// ====================================================================
+// File: StringCompress.cs
+// ====================================================================
 
 using System;
 using System.IO;
@@ -7,7 +9,10 @@ using System.Text;
 
 namespace Posh2Exe
 {
-    public class TextCompress
+    /// <summary>
+    /// Contains static methods for compressing and decompressing text
+    /// </summary>
+    public static class TextCompress
     {
 
         /// <summary>

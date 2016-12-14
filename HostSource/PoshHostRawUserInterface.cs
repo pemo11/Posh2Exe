@@ -8,6 +8,9 @@ namespace Posh2Exe
     using System;
     using System.Management.Automation.Host;
 
+    /// <summary>
+    /// The bare minimum implementation of PSHostRawUserInterface
+    /// </summary>
     public class PoshHostRawUserInterface : PSHostRawUserInterface
     {
         public override ConsoleColor BackgroundColor

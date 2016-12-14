@@ -12,6 +12,9 @@ namespace Posh2Exe
     using System.Management.Automation;
     using System.Management.Automation.Host;
 
+    /// <summary>
+    /// The bare minimum implementation of PSHostRawUserInterface
+    /// </summary>
     public class PoshHostUserInterface : PSHostUserInterface
     {
         /// <summary>

@@ -7,6 +7,9 @@ namespace Posh2Exe
 {
     using System;
 
+    /// <summary>
+    /// Just a custom exception class for the application
+    /// </summary>
     public class Posh2ExeException : SystemException
     {
         // Constructor with the message string as an argument

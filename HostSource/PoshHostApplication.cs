@@ -13,6 +13,9 @@ using System.Collections.ObjectModel;
 
 namespace Posh2Exe
 {
+    /// <summary>
+    /// The Posh Host class that will be embedded into the exe file
+    /// </summary>
     public class PoshHostApplication
     {
         private bool shouldExit;
@@ -30,6 +33,10 @@ namespace Posh2Exe
             set { this.exitCode = value; }
         }
 
+        /// <summary>
+        /// The entry point for the Posh Host application that runs the embedded script
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             // Ps1 file into the Assembly Resource
