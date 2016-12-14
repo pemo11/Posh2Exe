@@ -169,16 +169,13 @@ namespace Posh2Exe
                 // add the compressed ps1 file as a resource
                 compParas.EmbeddedResources.Add(compressedPath);
 
-                // the project uses its own copy of the Powershell assembly
+                // the project uses its own copy of the Powershell assembly that works with 
+                // .NET 4.0 and as no dependency to System.Core.dll
                 string autoPath = Path.Combine(Environment.CurrentDirectory, "System.Management.Automation.dll");
                 // string autoPath = @"C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll";
 
-                // the project uses its own copy of the System.core assembly
-                string corePath = Path.Combine(Environment.CurrentDirectory, "System.Core.dll");
-
                 // add reference to some assemblies
                 compParas.ReferencedAssemblies.Add(autoPath);
-                compParas.ReferencedAssemblies.Add(corePath);
                 compParas.ReferencedAssemblies.Add("System.dll");
 
                 CSharpCodeProvider codeProvider = new CSharpCodeProvider();
