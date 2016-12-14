@@ -117,7 +117,7 @@ namespace Posh2Exe
             {
                 Console.WriteLine();
                 Console.WriteLine(new String('*', 80));
-                Console.WriteLine("                   Welcome to Posh2Exe v0.9");
+                Console.WriteLine("                   Welcome to Posh2Exe v1.0");
                 Console.WriteLine("                   I hope the tool serves you well");
                 Console.WriteLine(new String('*', 80));
                 Console.WriteLine("\nThe quote of the day:\n");
@@ -164,23 +164,19 @@ namespace Posh2Exe
 
                 // a little compression won't hurt
                 string compressedPath = TextCompress.CompressFile(ps1Path);
-
-                // make a copy of the ps1 so that the compressed file can added as resource file
-                string ps1BackupPath = Path.ChangeExtension(ps1Path, "original.ps1");
-                File.Copy(ps1Path, ps1BackupPath, true);
-                // now overwrite the ps1 file with the compressed file
-                File.Copy(compressedPath, ps1Path, true);
+                string compressedFileName = Path.GetFileName(compressedPath);
 
                 // add the compressed ps1 file as a resource
-                compParas.EmbeddedResources.Add(ps1Path);
+                compParas.EmbeddedResources.Add(compressedPath);
+
+                // the project uses its own copy of the Powershell assembly
+                string autoPath = Path.Combine(Environment.CurrentDirectory, "System.Management.Automation.dll");
+                // string autoPath = @"C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll";
+
+                // the project uses its own copy of the System.core assembly
+                string corePath = Path.Combine(Environment.CurrentDirectory, "System.Core.dll");
 
                 // add reference to some assemblies
-                // Ältere System.Management.automation.dll
-                // string autoPath = Path.Combine(Environment.CurrentDirectory, "System.Management.Automation.dll");
-                string autoPath = @"C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll";
-
-                // TODO: Nicht ganz optimal
-                string corePath = @"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Core.dll";
                 compParas.ReferencedAssemblies.Add(autoPath);
                 compParas.ReferencedAssemblies.Add(corePath);
                 compParas.ReferencedAssemblies.Add("System.dll");
@@ -206,7 +202,7 @@ namespace Posh2Exe
                     using (StreamReader sr = new StreamReader(curAss.GetManifestResourceStream("Posh2Exe.HostSource." + fileList[i])))
                     {
                         // exchange place holder for resourcename
-                        sourceCode = sr.ReadToEnd().Replace("<<resourcename>>", ps1Name);
+                        sourceCode = sr.ReadToEnd().Replace("<<resourcename>>", compressedFileName);
                         sources[i] = sourceCode;
                     }
                 }
@@ -216,12 +212,12 @@ namespace Posh2Exe
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 if (results.Errors.Count == 0)
                 {
-                    Console.WriteLine("*** Compiled with no errors.");
+                    Console.WriteLine("\n*** Compiled with absolutely no errors.\n");
                     Environment.ExitCode = 0;
                 }
                 else
                 {
-                    Console.WriteLine("*** Resulting errors:");
+                    Console.WriteLine("\n*** Resulting errors:\n");
                     foreach (var error in results.Errors)
                     {
                         Console.WriteLine(error.ToString());
@@ -229,17 +225,24 @@ namespace Posh2Exe
                     }
                 }
 
-                // get the uncompressed ps1 file back
-                File.Copy(ps1BackupPath, ps1Path, true);
+                // Delete the compressed file
+                File.Delete(compressedPath);
 
                 // measurement stops
                 duration = DateTime.Now - startTime;
                 // display a summary
                 if (!quiteMode)
                 {
-                    Console.WriteLine("*** {0} with embedded {1} created in {2:n2}s", exeName, ps1Path, duration.TotalSeconds);
-                    Console.WriteLine(new String('*', 80));
+                    if (results.Errors.Count == 0)
+                    {
+                        Console.WriteLine("\n*** {0} with embedded {1} created in {2:n2}s\n", exeName, ps1Path, duration.TotalSeconds);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n\n*** {1} could not be embedded in {0}, sorry.\n", exeName, ps1Path);
+                    }
                     Console.ForegroundColor = oldColor;
+                    Console.WriteLine(new String('*', 80));
                 }
 
             }
@@ -250,7 +253,7 @@ namespace Posh2Exe
             }
 
             // Console.WriteLine("\nJust press one key of your choice on the keyboard");
-            // Console.ReadLine();
+             Console.ReadLine();
         }
     }
 }

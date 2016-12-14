@@ -17,7 +17,7 @@ namespace Posh2Exe
         /// <returns></returns>
         public static string CompressFile(string Ps1Path)
         {
-            string tmpFilePath = string.Empty;
+            string compressedFilePath = string.Empty;
 
             using (StreamReader sr = new StreamReader(Ps1Path))
             {
@@ -34,13 +34,13 @@ namespace Posh2Exe
                 Buffer.BlockCopy(compressedData, 0, gZipBuffer, 4, compressedData.Length);
                 // Now copy the rest of the buffer
                 Buffer.BlockCopy(BitConverter.GetBytes(buffer.Length), 0, gZipBuffer, 0, 4);
-                // Get a tmp file path
-                tmpFilePath = Path.GetTempFileName();
+                // Create the compressed file
+                compressedFilePath = Path.ChangeExtension(Ps1Path, ".ps1compressed");
                 // Open a StreamWriter to write everything into that file
-                using (StreamWriter sw = new StreamWriter(tmpFilePath))
+                using (StreamWriter sw = new StreamWriter(compressedFilePath))
                     sw.WriteLine(Convert.ToBase64String(gZipBuffer));
             }
-            return tmpFilePath;
+            return compressedFilePath;
         }
 
         /// <summary>
