@@ -250,7 +250,7 @@ namespace Posh2Exe
             }
 
             // Console.WriteLine("\nJust press one key of your choice on the keyboard");
-            // Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }

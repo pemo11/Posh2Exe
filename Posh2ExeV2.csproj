@@ -82,6 +82,7 @@
     <None Include="DBAbfrage.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="documentation\documentation.dxp" />
     <None Include="packages.config" />
     <None Include="Test.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
