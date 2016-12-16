@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+   <param name="FrameName" value="right">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Posh2Exe Assembly">
+     </OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Overview">
+        <param name="Local" value="Posh2Exe.html">
+     </OBJECT>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Namespaces">
+     </OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Posh2Exe Namespace">
+     </OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Overview">
+        <param name="Local" value="Posh2Exe~Posh2Exe_namespace.html">
+     </OBJECT>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Classes">
+     </OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Posh2ExeException">
+        <param name="Local" value="Posh2Exe~Posh2Exe.Posh2ExeException.html">
+     </OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Overview">
+        <param name="Local" value="Posh2Exe~Posh2Exe.Posh2ExeException.html">
+     </OBJECT>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Members">
+        <param name="Local" value="Posh2Exe~Posh2Exe.Posh2ExeException_members.html">
+     </OBJECT>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Posh2ExeException Constructor">
+        <param name="Local" value="Posh2Exe~Posh2Exe.Posh2ExeException~_ctor.html">
+     </OBJECT>
+<UL>
+</UL>
+</UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="SetupHostApplication">
+        <param name="Local" value="Posh2Exe~Posh2Exe.SetupHostApplication.html">
+     </OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Overview">
+        <param name="Local" value="Posh2Exe~Posh2Exe.SetupHostApplication.html">
+     </OBJECT>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Members">
+        <param name="Local" value="Posh2Exe~Posh2Exe.SetupHostApplication_members.html">
+     </OBJECT>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="SetupHostApplication Constructor">
+        <param name="Local" value="Posh2Exe~Posh2Exe.SetupHostApplication~_ctor.html">
+     </OBJECT>
+<UL>
+</UL>
+</UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="TextCompress">
+        <param name="Local" value="Posh2Exe~Posh2Exe.TextCompress.html">
+     </OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Overview">
+        <param name="Local" value="Posh2Exe~Posh2Exe.TextCompress.html">
+     </OBJECT>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Members">
+        <param name="Local" value="Posh2Exe~Posh2Exe.TextCompress_members.html">
+     </OBJECT>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="TextCompress Constructor">
+        <param name="Local" value="Posh2Exe~Posh2Exe.TextCompress~_ctor.html">
+     </OBJECT>
+<UL>
+</UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Methods">
+        <param name="Local" value="Posh2Exe~Posh2Exe.TextCompress_methods.html">
+     </OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="CompressFile Method">
+        <param name="Local" value="Posh2Exe~Posh2Exe.TextCompress~CompressFile.html">
+     </OBJECT>
+<UL>
+</UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="CompressStream Method">
+        <param name="Local" value="Posh2Exe~Posh2Exe.TextCompress~CompressStream.html">
+     </OBJECT>
+<UL>
+</UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="DecompressFile Method">
+        <param name="Local" value="Posh2Exe~Posh2Exe.TextCompress~DecompressFile.html">
+     </OBJECT>
+<UL>
+</UL>
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="DecompressStream Method">
+        <param name="Local" value="Posh2Exe~Posh2Exe.TextCompress~DecompressStream.html">
+     </OBJECT>
+<UL>
+</UL>
+</UL>
+</UL>
+</UL>
+</UL>
+</UL>
+</UL>
+
+</UL>
+</BODY></HTML>

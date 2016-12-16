@@ -16,3 +16,6 @@ p1 is the name of the parameter, 100 it's value. Its not possible to use the arg
 
 Posh2exe has a -q parameter that ommits the header and a short summary.
 
+Limitations
+------------
+The host is not a "full blown" PowerShell Host so far. Features like Read-Host -AsSecureString, PromptForChoice or Nested Prompts have not been implemented yet. If a script contains one of these elements it will produce an error message when running the script inside the exe.

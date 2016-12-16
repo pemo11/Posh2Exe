@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" value="IE=9" />
+    <meta name="Microsoft.Help.SelfBranded" content="true" />
+
+    <title>DecompressFile Method</title>
+    <meta name="Title" content="" />
+    <script src="script/jquery-1.7.2.min.js" type="text/javascript" id="mshs_support_script">
+</script>
+    <script src="script/jquery-ui-1.8.18.custom.min.js" type="text/javascript">
+</script>
+    <link rel="styleSheet" type="text/css" href="stylesheets/jquery-ui-1.8.18.custom.css" />
+    <link rel="styleSheet" type="text/css" href="stylesheets/jquery.qtip.css" />
+    <link rel="styleSheet" type="text/css" href="stylesheets/dx.net.2012.css" data-mshv2-stylesheet="/stylesheets/dx.net.2012.mshv2.css" data-mshv1-stylesheet="/stylesheets/dx.net.2012.mshv1.css" />
+    <script src="script/dx.net.jqueryplugins.2012.min.js" type="text/javascript">
+</script>
+    <script src="script/dx.net.2012.js" type="text/javascript">
+</script>
+    <meta name="Microsoft.Help.Id" content="Posh2Exe~Posh2Exe.TextCompress~DecompressFile" />
+    <meta name="Microsoft.Help.TocParent" content="Posh2Exe~Posh2Exe.TextCompress_methods" />
+    <meta name="Microsoft.Help.ContentType" content="Reference" />
+    <meta name="Microsoft.Help.F1" content="Posh2Exe.TextCompress.DecompressFile" />
+    <meta name="Microsoft.Help.Locale" content="en-US" />
+    <meta name="Microsoft.Help.TopicLocale" content="en-US" />
+    <link rel="styleSheet" type="text/css" href="stylesheets/slimbox2.css" />
+    <link rel="styleSheet" type="text/css" href="stylesheets/hs-jquery-common.css" />
+    <link rel="styleSheet" type="text/css" href="stylesheets/hs-jquery-slimbox.css" />
+    <link rel="styleSheet" type="text/css" href="stylesheets/hs-jquery-expand.css" />
+    <link rel="styleSheet" type="text/css" href="stylesheets/hs-expandcollapse.css" />
+    <link rel="styleSheet" type="text/css" href="stylesheets/hs-boxes.css" />
+    <script src="script/jquery-1.7.2.min.js" type="text/javascript">
+</script>
+    <script src="script/slimbox2.js" type="text/javascript">
+</script>
+    <script src="script/hs-jquery-common.js" type="text/javascript">
+</script>
+    <script src="script/jquery-expand.js" type="text/javascript">
+</script>
+    <script src="script/hs-expandcollapse.js" type="text/javascript">
+</script>
+    <script src="script/jquery.fitvids.js" type="text/javascript">
+</script>
+    <script src="script/swfobject.js" type="text/javascript">
+</script>
+</head>
+
+<body>
+    <div id="BeforeHeaderContent"></div>
+
+    <div id="HeaderContent">
+        <div id="ProjectTitle">
+            Visual Studio 2010-2015
+        </div>
+
+        <div id="PageTitle">
+            <div id="PageTitleText">
+                DecompressFile Method
+            </div>
+        </div>
+    </div>
+
+    <div id="AfterHeaderContent">
+        <!-- Spacing --> <span id="ToggleAllSectionsLink" class="FunctionLink"><label id="CollapseAllLabel">Collapse All</label>&#160;<label id="ExpandAllLabel" style="display: none;">Expand All</label></span> <!-- Spacing --> <span id="LanguageFilterPopupLink" class="PopupLink" data-popupcontentsource="#LanguageCheckboxes" data-popuptitle='Language Filter'><label id="ShowAllLabel" for="LanguageFilterPopupLink">Language Filter: All</label>&#160;<label id="MultipleLabel" for="LanguageFilterPopupLink" style="display: none;">Language Filter: Multiple</label>&#160;<label id="VBAllLabel" for="LanguageFilterPopupLink" style="display: none;">Language Filter: Visual Basic</label>&#160;<label id="VBLabel" for="LanguageFilterPopupLink" style="display: none;">Language Filter: Visual Basic (Declaration)</label>&#160;<label id="VBUsageLabel" for="LanguageFilterPopupLink" style="display: none;">Language Filter: Visual Basic (Usage)</label>&#160;<label id="CSLabel" for="LanguageFilterPopupLink" style="display: none;">Language Filter: C#</label>&#160;<label id="CPP2005Label" for="LanguageFilterPopupLink" style="display: none;">Language Filter: C++/CLI</label></span>
+
+        <div class="PopupContent" id="LanguageCheckboxes">
+            <input data-languagename="VB" id="VBLanguageCheckbox" type="checkbox" class="ToggleLanguageCheckbox" checked="true" data-toggleclass="FilteredContentVB" /> <label class="LanguageFilter" for="VBCheckbox">Visual Basic (Declaration)</label><br />
+            <input data-languagename="VBUsage" id="VBUsageLanguageCheckbox" type="checkbox" class="ToggleLanguageCheckbox" checked="true" data-toggleclass="FilteredContentVBUsage" /> <label class="LanguageFilter" for="VBUsageCheckbox">Visual Basic (Usage)</label><br />
+            <input data-languagename="CS" id="CSLanguageCheckbox" type="checkbox" class="ToggleLanguageCheckbox" checked="true" data-toggleclass="FilteredContentCS" /> <label class="LanguageFilter" for="CSCheckbox">C#</label><br />
+            <input data-languagename="CPP2005" id="CPP2005LanguageCheckbox" type="checkbox" class="ToggleLanguageCheckbox" checked="true" data-toggleclass="FilteredContentCPP2005" /> <label class="LanguageFilter" for="CPP2005Checkbox">C++/CLI</label>
+        </div>
+    </div>
+
+    <div class="BreadcrumbsContainer">
+        <table>
+            <tr>
+                <td><a href="ms-xhelp:///?id=Posh2Exe~Posh2Exe_namespace">Posh2Exe Namespace</a> &gt; <a href="ms-xhelp:///?id=Posh2Exe~Posh2Exe.TextCompress">TextCompress Class</a> : DecompressFile Method</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="CompressPathPopupContent" class="PopupContent"></div>
+
+    <div id="BodyContent">
+        <div class="SectionHeading" id="syntaxSectionHeading">
+            <span class="SectionHeadingIcon"><!-- --></span><span class="SectionHeadingText">Syntax</span>
+        </div>
+
+        <div id="syntaxSectionContent" class="SectionContent">
+            <div class="TabContainer" id="TabContainer">
+                <ul>
+                    <li class="FilteredContentVBAll"><a href="#Syntax-VBAll">Visual Basic</a></li>
+
+                    <li class="FilteredContentCS"><a href="#Syntax-CS">C#</a></li>
+
+                    <li class="FilteredContentCPP2005"><a href="#Syntax-CPP2005">C++/CLI</a></li>
+                </ul>
+
+                <div id="Syntax-VB" class="FilteredContentVB">
+                    <pre>
+<span style="color: #008000;">'Declaration
+</span> 
+</pre>
+                    <pre>
+<span style="color: #0000FF;">Public</span>&#160;<span style="color: #0000FF;">Shared</span>&#160;<span style="color: #0000FF;">Function</span> DecompressFile( _
+   <span style="color: #0000FF;">ByVal</span>&#160;<i><a class="PopupLink" id="CompressPathPopupLink" data-popupcontentsource="#CompressPathPopupContent" data-popupshowevent="click mouseenter">CompressPath</a></i>&#160;<span style="color: #0000FF;">As</span>&#160;<a href="ms-xhelp:///?id=T:System.String">String</a> _
+) <span style="color: #0000FF;">As</span>&#160;<a href="ms-xhelp:///?id=T:System.String">String</a>
+</pre>
+                </div>
+
+                <div id="Syntax-VBUsage" class="FilteredContentVBUsage">
+                    <pre>
+<span style="color: #008000;">'Usage
+</span> 
+</pre>
+                    <pre>
+<span style="color: #0000FF;">Dim</span> CompressPath <span style="color: #0000FF;">As</span>&#160;<a href="ms-xhelp:///?id=T:System.String">String</a>
+<span style="color: #0000FF;">Dim</span> value <span style="color: #0000FF;">As</span>&#160;<a href="ms-xhelp:///?id=T:System.String">String</a>
+ 
+value = <a href="ms-xhelp:///?id=Posh2Exe~Posh2Exe.TextCompress">TextCompress</a>.DecompressFile(CompressPath)
+</pre>
+                </div>
+
+                <div id="Syntax-CS" class="FilteredContentCS">
+                    <pre>
+<span style="color: #0000FF;">public</span>&#160;<span style="color: #0000FF;">static</span>&#160;<a href="ms-xhelp:///?id=T:System.String">string</a> DecompressFile( 
+   <a href="ms-xhelp:///?id=T:System.String">string</a>&#160;<i><a class="PopupLink" id="CompressPathPopupLink" data-popupcontentsource="#CompressPathPopupContent" data-popupshowevent="click mouseenter">CompressPath</a></i>
+)
+</pre>
+                </div>
+
+                <div id="Syntax-CPP2005" class="FilteredContentCPP2005">
+                    <pre>
+<span style="color: #0000FF;">public</span>:
+<span style="color: #0000FF;">static</span>&#160;<a href="ms-xhelp:///?id=T:System.String">String^</a> DecompressFile( 
+   <a href="ms-xhelp:///?id=T:System.String">String^</a>&#160;<i><a class="PopupLink" id="CompressPathPopupLink" data-popupcontentsource="#CompressPathPopupContent" data-popupshowevent="click mouseenter">CompressPath</a></i>
+) 
+</pre>
+                </div>
+            </div>
+
+            <h4 class="dxh4">Parameters</h4>
+
+            <dl>
+                <dt><i>CompressPath</i></dt>
+            </dl>
+        </div><a name="exampleBookmark"></a>
+
+        <div class="SectionHeading" id="requirementsSectionHeading">
+            <span class="SectionHeadingIcon"><!-- --></span><span class="SectionHeadingText">Requirements</span>
+        </div>
+
+        <div id="requirementsSectionContent" class="SectionContent">
+            <p><b>Target Platforms:</b> Windows 7, Windows Vista SP1 or later, Windows XP SP3, Windows Server 2008 (Server Core not supported), Windows Server 2008 R2 (Server Core supported with SP1 or later), Windows Server 2003 SP2</p>
+        </div><a name="seealsobookmark"></a>
+
+        <div class="SectionHeading" id="seealsoSectionHeading">
+            <span class="SectionHeadingIcon"><!-- --></span><span class="SectionHeadingText">See Also</span>
+        </div>
+
+        <div id="seealsoSectionContent" class="SectionContent">
+            <h4 class="subHeading">Reference</h4>
+
+            <p><a href="ms-xhelp:///?id=Posh2Exe~Posh2Exe.TextCompress">TextCompress Class</a><br />
+            <a href="ms-xhelp:///?id=Posh2Exe~Posh2Exe.TextCompress_members">TextCompress Members</a></p>
+        </div>
+    </div>
+
+    <div id="FooterContent">
+        <a href="mailto:support@company.com?subject=Documentation Feedback: Posh2Exe~Posh2Exe.TextCompress~DecompressFile.html">Send Feedback</a>
+    </div>
+</body>
+</html>
